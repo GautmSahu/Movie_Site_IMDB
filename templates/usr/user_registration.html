@@ -1,0 +1,18 @@
+{% extends 'common.html' %}
+{% block content %}
+    <form action="{% url 'save_user_register' %}" method="post">
+    {% csrf_token %}
+        <br>
+    <table align="center" border="4">
+        {% if success %}
+            <tr><th colspan="2">{{ success }}</th></tr>
+        {% endif %}
+        {% if error %}
+            <tr><th colspan="2">{{ error }}</th></tr>
+        {% endif %}
+        <tr><th colspan="2">User Registration</th></tr>
+        {{ reg_form }}
+        <tr><th colspan="2"><button type="submit">Register</button></th></tr>
+    </table>
+    </form>
+{% endblock %}

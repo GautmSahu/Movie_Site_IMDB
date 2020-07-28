@@ -1,0 +1,38 @@
+{% extends 'common.html' %}
+{% block content %}
+    {% load static %}
+{#    <img src="{% static 'images/man-watching-movie-on-tablet-600w-1109999453.jpg' %}">#}
+    Welcome <br>
+    {% if search_for %}
+        Search String : {{ search_for }}<br>
+    {% endif %}
+
+    {% for key1,val1 in result.items %}
+{#        {{ key1 }}<br>#}<br>
+        {% for data1 in val1 %}
+            {% for key2,val2 in data1.items %}
+{#                {{ key2 }}#}
+                {% if key2 == 'image' %}
+                    {% if val2 != "None" %}
+                        <img src="{{ val2 }}" height="150" width="150"><br>
+                    {% endif %}
+                    {% else %}
+                    {{ val2 }}<br>
+                {% endif %}
+
+
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
+
+{#    {% for key1,val1 in result.items %}#}
+{#        #}
+{#        <div>Titles</div><br>#}
+{#        {% for val2 in val1 %}#}
+{#            <img src="{{ val2.image }}" height="100" width="100">#}
+{#        {% endfor %}#}
+{#    {% endfor %}#}
+
+
+{% endblock %}
