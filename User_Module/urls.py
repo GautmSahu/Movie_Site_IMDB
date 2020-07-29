@@ -24,5 +24,7 @@ urlpatterns = [
     path('save_user_register/',views.save_user_register,name="save_user_register"),
     path('show_user_login/',views.show_user_login,name="show_user_login"),
     path('validate_user/',views.validate_user,name="validate_user"),
-    path('search_movie/',views.search_movie,name="search_movie")
+    path('search_movie/',views.search_movie,name="search_movie"),
+    path('movie_page/',views.movie_page,name="movie_page"),
+    path('user_watch_video/',views.user_watch_video,name="user_watch_video")
 ]

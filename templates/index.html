@@ -7,17 +7,20 @@
         Search String : {{ search_for }}<br>
     {% endif %}
 
+
     {% for key1,val1 in result.items %}
-{#        {{ key1 }}<br>#}<br>
+        {{ key1 }}<br><br>
         {% for data1 in val1 %}
             {% for key2,val2 in data1.items %}
-{#                {{ key2 }}#}
+                {{ key2 }}  --->   {% if key2 == "title" %}{{ val2 }}<br>{% endif %}
                 {% if key2 == 'image' %}
                     {% if val2 != "None" %}
                         <img src="{{ val2 }}" height="150" width="150"><br>
                     {% endif %}
                     {% else %}
-                    {{ val2 }}<br>
+                {% endif %}
+                {% if key2 == "id" %}
+                    <a href="{% url 'movie_page' %}?idno={{ val2 }}">Details</a><br>
                 {% endif %}
 
 

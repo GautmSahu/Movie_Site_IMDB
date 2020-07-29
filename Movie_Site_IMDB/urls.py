@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('Admin_Module/',include("Admin_Module.urls")),
     path('User_Module/',include("User_Module.urls")),
-    path('',TemplateView.as_view(template_name="index.html"),name="main")
+    path('',TemplateView.as_view(template_name="index.html"),name="main"),
 ]

@@ -1,0 +1,166 @@
+{% extends 'common.html' %}
+{% block  content %}
+    {% load static %}
+    {% for key1,val1 in details.items %}
+
+
+        {% if key1 == "resource" %}
+{#            {{ key1 }} --> {{ val1 }} <br>#}
+            {% for key2,val2 in val1.items %}
+{#                {{ key2 }} -->  {{ val2 }} <br>#}
+                {% if key2 == 'image' %}
+                    {% for key9,val9 in val2.items %}
+                        {% if key9 == 'url' %}
+                            <img src="{{ val9 }}" height="150" width="150"> <br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if key2 == "title" %}
+                    Title - {{ val2 }}<br>
+                {% endif %}
+                {% if key2 == "titleType" %}
+                    Type - {{ val2 }}<br>
+                {% endif %}
+                {% if key2 == "year" %}
+                    Released Year - {{ val2 }}<br>
+                {% endif %}
+                {% if key2 == "videos" %}
+                    {% for list_data in val2 %}
+{#                        {{ list_data }} <br>#}
+                        {% for key3,val3 in list_data.items %}
+{#                            {{ key3 }} -->  {{ val3 }} <br>#}
+                            {% if key3 == "audioLanguage" %}
+                                Language - {{ val3 }}
+                            {% endif %}
+                            {% if key3 == "type" %}
+                                Type - {{ val3 }}
+                            {% endif %}
+                            {% if key3 == "description" %}
+                                Description - {{ val3 }}
+                            {% endif %}
+                            {% if key3 == "durationInSeconds" %}
+                                Duration(sec) - {{ val3 }}
+                            {% endif %}
+                            {% if key3 == "id" %}
+                                <a href="{% url 'user_watch_video' %}?vid={{ val3 }}">Click Here To Watch</a>
+                            {% endif %}
+                            {% if key3 == "image" %}
+                                {% for key4,val4 in val3.items %}
+                                    {{ key4 }} -->  {{ val4 }} <br>
+                                {% endfor %}
+                            {% endif %}
+                            {% if key3 == "primaryTitle" %}
+                                {% for key5,val5 in val3.items %}
+                                    {{ key5 }} --> {{ val5 }}  <br>
+                                    {% if key5 == "image" %}
+                                        {% for key6,val6 in val5.items %}
+                                            {{ key6 }} --> {{ val6 }}  <br>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if key3 == "parentTitle" %}
+                                {% for key7,val7 in val3.items %}
+                                    {{ key7 }} -->  {{ val7 }}  <br>
+                                    {% if key7 == "image" %}
+                                        {% for key8,val8 in val7.items %}
+                                            {{ key8 }} -->  {{ val8 }}  <br>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+
+
+
+
+
+
+
+    {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% extends 'common.html' %}#}
+{#{% block  content %}#}
+{#    {% load static %}#}
+{#    {% for key1,val1 in details.items %}#}
+{##}
+{##}
+{#        {% if key1 == "resource" %}#}
+{#            {{ key1 }} --> {{ val1 }} <br>#}
+{#            {% for key2,val2 in val1.items %}#}
+{#                {{ key2 }} -->  {{ val2 }} <br>#}
+{#                {% if key2 == 'image' %}#}
+{#                    {% for key9,val9 in val2.items %}#}
+{#                        {{ key9 }} --> {{ val9 }} <br>#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#                {% if key2 == "videos" %}#}
+{#                    {% for list_data in val2 %}#}
+{#                        {{ list_data }} <br>#}
+{#                        {% for key3,val3 in list_data.items %}#}
+{#                            {{ key3 }} -->  {{ val3 }} <br>#}
+{#                            {% if key3 == "image" %}#}
+{#                                {% for key4,val4 in val3.items %}#}
+{#                                    {{ key4 }} -->  {{ val4 }} <br>#}
+{#                                {% endfor %}#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "primaryTitle" %}#}
+{#                                {% for key5,val5 in val3.items %}#}
+{#                                    {{ key5 }} --> {{ val5 }}  <br>#}
+{#                                    {% if key5 == "image" %}#}
+{#                                        {% for key6,val6 in val5.items %}#}
+{#                                            {{ key6 }} --> {{ val6 }}  <br>#}
+{#                                        {% endfor %}#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "parentTitle" %}#}
+{#                                {% for key7,val7 in val3.items %}#}
+{#                                    {{ key7 }} -->  {{ val7 }}  <br>#}
+{#                                    {% if key7 == "image" %}#}
+{#                                        {% for key8,val8 in val7.items %}#}
+{#                                            {{ key8 }} -->  {{ val8 }}  <br>#}
+{#                                        {% endfor %}#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    {% endfor %}#}
+{#{% endblock %}#}
