@@ -12,15 +12,16 @@
         {{ key1 }}<br><br>
         {% for data1 in val1 %}
             {% for key2,val2 in data1.items %}
-                {{ key2 }}  --->   {% if key2 == "title" %}{{ val2 }}<br>{% endif %}
+                {% if key2 == "title" %} Title - {{ val2 }}<br>{% endif %}
                 {% if key2 == 'image' %}
                     {% if val2 != "None" %}
-                        <img src="{{ val2 }}" height="150" width="150"><br>
+                      Image -   <img src="{{ val2 }}" height="150" width="150"><br>
+                        {% else %}
+                        Image - Not Available <br>
                     {% endif %}
-                    {% else %}
                 {% endif %}
                 {% if key2 == "id" %}
-                    <a href="{% url 'movie_page' %}?idno={{ val2 }}">Details</a><br>
+                    Details - <a href="{% url 'movie_page' %}?idno={{ val2 }}">Details</a><br>
                 {% endif %}
 
 

@@ -46,17 +46,20 @@ def search_movie(request):
     response = requests.request("GET", url + search, headers=headers)
     # print(response.text)
     result=json.loads(response.text)
-    # print(type(result))
-    # for key1,value1 in result.items():
-    #     print(key1,"--------->",value1)
-    #     for data in value1:
-    #         print(data)
+    print(type(result))
+    for key1,value1 in result.items():
+        print(key1,"--------->",value1)
+        for data in value1:
+            print(data)
     return render(request,"index.html",{"result":result,"search_for":search})
 
 
+title_id=""
 def movie_page(request):
     m_id=request.GET.get("idno")
     print(m_id)
+    global title_id
+    title_id=m_id
     url = "https://imdb8.p.rapidapi.com/title/get-videos"
 
     querystring = {"limit": "25", "region": "US", "tconst": m_id}
@@ -101,14 +104,93 @@ def movie_page(request):
 
 
 def user_watch_video(request):
-    vid=str(request.GET.get("vid"))
+
+    # vid=str(request.GET.get("vid"))
+    # print(vid)
+    # original_id=vid.split('/')
+    # print(original_id)
+    # url="https://www.imdb.com/video/"
+    # response=requests.get(url+original_id[2],None)
+    # print(response.status_code)
+    # print("Text ",response.text)
+    # print("Content ",response.content)
+    # bs=BeautifulSoup(response.content,"html.parser")
+    # res=bs.find("div",{"class":"jw-media jw-reset"})
+    # print("printing ",res.text)
+
+    vid = str(request.GET.get("vid"))
     print(vid)
-    original_id=vid.split('/')
+    original_id = vid.split('/')
     print(original_id)
-    url="https://www.imdb.com/video/"
-    response=requests.get(url+original_id[2],None)
-    print(response.status_code)
-    print(response.text)
-    bs=BeautifulSoup(response.text,"lxml-xml")
-    res=bs.find("div",{"class":"jw-media jw-reset"})
-    print("printing ",res.text)
+
+    url = "https://www.imdb.com/video/"+original_id[2]+"?playlistId="+title_id+"&ref_=tt_ov_vi"
+
+    print("url ",url)
+
+    url1 = "https://imdb-video.media-imdb.com/"
+    res = requests.get(url,None)
+    bs = BeautifulSoup(res.text, "html.parser")
+    result = bs.findAll("script")
+    print(result[11])
+    print(type(result[11]))
+    temp = str(result[11])
+    print("temp printing", temp)
+    temp1 = temp.split("https://imdb-video.media-imdb.com/"+original_id[2])
+
+    print("Printing temp1 ",temp1)
+
+    print(temp1[2])
+    temp2 = temp1[2]
+    temp3 = temp2.split('"')
+    print(temp3[0])
+    temp4 = temp3[0]
+    temp5 = len(temp4)
+    print(temp5)
+    splitted_url = temp4[:-1]
+    print(splitted_url)
+    print(url1 + original_id[2] + splitted_url)
+
+    final = url1 + original_id[2] + splitted_url
+    # newurl=
+    return render(request, "usr/video.html", {"link": final})
+
+
+
+
+
+
+
+
+
+
+
+
+    # 30-07-20 Backup
+    # vid=str(request.GET.get("vid"))
+    # print(vid)
+    # original_id=vid.split('/')
+    # print(original_id)
+    # url="https://www.imdb.com/video/vi1044495385?playlistId=tt9052870&ref_=tt_ov_vi"
+    # url1="https://imdb-video.media-imdb.com/"
+    # res=requests.get("https://www.imdb.com/video/vi1044495385?playlistId=tt9052870&ref_=tt_ov_vi")
+    # bs=BeautifulSoup(res.text,"html.parser")
+    # result=bs.findAll("script")
+    # print(result[11])
+    # print(type(result[11]))
+    # temp=str(result[11])
+    # print("temp printing",temp)
+    # temp1=temp.split("https://imdb-video.media-imdb.com/vi1044495385")
+    # print(temp1[2])
+    # temp2=temp1[2]
+    # temp3=temp2.split('"')
+    # print(temp3[0])
+    # temp4=temp3[0]
+    # temp5=len(temp4)
+    # print(temp5)
+    # splitted_url=temp4[:-1]
+    # print(splitted_url)
+    # print(url1+original_id[2]+splitted_url)
+    #
+    # final=url1+original_id[2]+splitted_url
+    # # newurl=
+    # return render(request,"usr/video.html",{"link":final})
