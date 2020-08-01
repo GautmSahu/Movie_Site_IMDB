@@ -5,14 +5,22 @@
         <br>
     <table align="center" border="4">
         {% if success %}
-            <tr><th colspan="2">{{ success }}</th></tr>
+            <tr><th class="success_mess" colspan="2">{{ success }}</th></tr>
         {% endif %}
         {% if error %}
-            <tr><th colspan="2">{{ error }}</th></tr>
+            <tr><th class="error_mess" colspan="2">{{ error }}</th></tr>
         {% endif %}
-        <tr><th colspan="2">User Registration</th></tr>
-        {{ reg_form }}
-        <tr><th colspan="2"><button type="submit">Register</button></th></tr>
+        <tr><th colspan="2" class="table_heading">User Registration</th></tr>
+        {% for data in reg_form %}
+            {% if data.label %}
+               <tr>
+                    <th class="table_subheading">{{ data.label }}</th>
+                    <th class="inputText">{{ data }}</th>
+               </tr>
+            {% endif %}
+        {% endfor %}
+        <tr><th colspan="2" style="text-align: center"><button class="table_button" type="submit">Register</button></th></tr>
     </table>
     </form>
+    <br><br>
 {% endblock %}

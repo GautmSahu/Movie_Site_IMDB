@@ -1,0 +1,29 @@
+.inputText{
+    font-size: 20px;
+    text-align: center;
+}
+.table_heading{
+    font-size: 40px;
+    background-color: greenyellow;
+    color: darkblue;
+    text-align: center;
+}
+.table_subheading{
+    font-size: 30px;
+    color: coral;
+    text-align: center;
+}
+.table_button{
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: green;
+}
+.success_mess{
+    font-size: 30px;
+    color: green;
+}
+.error_mess{
+    font-size: 30px;
+    color: red;
+}

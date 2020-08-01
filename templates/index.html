@@ -1,42 +1,40 @@
 {% extends 'common.html' %}
 {% block content %}
     {% load static %}
-{#    <img src="{% static 'images/man-watching-movie-on-tablet-600w-1109999453.jpg' %}">#}
-    Welcome <br>
+
     {% if search_for %}
-        Search String : {{ search_for }}<br>
+                <h3 align="center">Search String : {{ search_for }}</h3><br>
+    {% else %}
+                <h2 align="center"><img src="{% static 'images/hb_artemisfowl_disneyplus_mobile_19170_23a7506c.jpg' %}" height="500" width="1000" style="margin: 70px"></h2>
     {% endif %}
 
 
     {% for key1,val1 in result.items %}
-        {{ key1 }}<br><br>
         {% for data1 in val1 %}
-            {% for key2,val2 in data1.items %}
-                {% if key2 == "title" %} Title - {{ val2 }}<br>{% endif %}
-                {% if key2 == 'image' %}
-                    {% if val2 != "None" %}
-                      Image -   <img src="{{ val2 }}" height="150" width="150"><br>
-                        {% else %}
-                        Image - Not Available <br>
-                    {% endif %}
-                {% endif %}
-                {% if key2 == "id" %}
-                    Details - <a href="{% url 'movie_page' %}?idno={{ val2 }}">Details</a><br>
-                {% endif %}
-
-
-            {% endfor %}
+            <div style="float: inside;height: auto;width: auto;margin-top: 20px;margin-left: 470px;text-align: center;">
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col mb-4">
+                        {% for key2,val2 in data1.items %}
+                            <div class="card">
+                            {% if key2 == 'image' %}
+                            {% if val2 != "None" %}
+                                <img src="{{ val2 }}" class="card-img-top" alt="..." height="300" width="300">
+                            {% else %}
+                                Image - Not Available <br>
+                            {% endif %}
+                            {% endif %}
+                            <div class="card-body">
+                                {% if key2 == "title" %}<h2 class="card-title">{{ val2 }}</h2>{% endif %}
+                                {% if key2 == "id" %}
+                                    <p class="card-text">Details - <a href="{% url 'movie_page' %}?idno={{ val2 }}">Click Here</a></p>
+                                {% endif %}
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <br>
+            </div>
         {% endfor %}
     {% endfor %}
-
-
-{#    {% for key1,val1 in result.items %}#}
-{#        #}
-{#        <div>Titles</div><br>#}
-{#        {% for val2 in val1 %}#}
-{#            <img src="{{ val2.image }}" height="100" width="100">#}
-{#        {% endfor %}#}
-{#    {% endfor %}#}
-
-
 {% endblock %}

@@ -1,111 +1,126 @@
 {% extends 'common.html' %}
 {% block  content %}
     {% load static %}
+    <style>
+        .subTitle{
+            font-size: 20px;
+            color: green
+        }
+    </style>
     {% for key1,val1 in details.items %}
         {% if key1 == "resource" %}
-{#            {{ key1 }} --> {{ val1 }} <br>#}
-            {% for key2,val2 in val1.items %}
-{#                {{ key2 }} -->  {{ val2 }} <br>#}
-                {% if key2 == 'image' %}
-                    {% for key9,val9 in val2.items %}
-                        {% if key9 == 'url' %}
-                            <img src="{{ val9 }}" height="150" width="150"> <br>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if key2 == "title" %}
-                    Title - {{ val2 }}<br>
-                {% endif %}
-                {% if key2 == "titleType" %}
-                    Type - {{ val2 }}<br>
-                {% endif %}
-                {% if key2 == "year" %}
-                    Released Year - {{ val2 }}<br>
-                {% endif %}
-                {% if key2 == "videos" %}
-                    {% for list_data in val2 %}
-{#                        {{ list_data }} <br>#}
-                        {% for key3,val3 in list_data.items %}
-{#                            {{ key3 }} -->  {{ val3 }} <br>#}
-                            {% if key3 == "audioLanguage" %}
-                                Language - {{ val3 }}<br>
-                            {% endif %}
-                            {% if key3 == "contentType" %}
-                                Type Of Content - {{ val3 }}<br>
-                            {% endif %}
-                            {% if key3 == "type" %}
-                                Type - {{ val3 }} <br>
-                            {% endif %}
-                            {% if key3 == "description" %}
-                                Description - {{ val3 }}<br>
-                            {% endif %}
-                            {% if key3 == "durationInSeconds" %}
-                                Duration(sec) - {{ val3 }} <br>
-                            {% endif %}
-                            {% if key3 == "id" %}
-                                <a href="{% url 'user_watch_video' %}?vid={{ val3 }}">Click Here To Watch</a><br>
-                            {% endif %}
-                            {% if key3 == "image" %}
-                                {% for key4,val4 in val3.items %}
-                                    {% if key4 == "url" %} <br>
-                                        Image - <img src="{{ val4 }}" height="150" width="150"><br>
+            <div class="card mb-3" style="max-width: 900px;margin-top: 20px;margin-left: 250px">
+                <div class="row no-gutters" style="max-width: 900px">
+                    {% for key2,val2 in val1.items %}
+                        <div class="col-md-4" style="margin-left: 300px;margin-top: -70px">
+                            {% if key2 == 'image' %}
+                                {% for key9,val9 in val2.items %}
+                                    {% if key9 == 'url' %}
+                                        <img src="{{ val9 }}" class="card-img" alt="..." height="400" width="350">
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
-                            {% if key3 == "primaryTitle" %}
-                                Primary Title -:<br>
-                                {% for key5,val5 in val3.items %}
-                                    {% if key5 == "title" %}
-                                        Title - {{ val5 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key5 == "titleType" %}
-                                        Title Type - {{ val5 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key5 == "year" %}
-                                        Year - {{ val5 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key5 == "episode" %}
-                                        Episode - {{ val5 }}  &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key5 == "year" %}
-                                        Season - {{ val5 }}  &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key5 == "image" %}
-                                        {% for key6,val6 in val5.items %}
-                                            {% if key6 == 'url' %}
-                                                <br>Image - <img src="{{ val6 }}" height="150" width="150"><br>
+                        </div>
+                        <div class="col-md-12" style="max-width: 900px">
+                            <h5 align="center">
+                                {% if key2 == "title" %}
+                                    Title - {{ val2 }}
+                                {% endif %}
+                                {% if key2 == "titleType" %}
+                                    Type - {{ val2 }}
+                                {% endif %}
+                                {% if key2 == "year" %}
+                                    Released Year - {{ val2 }}
+                                {% endif %}
+                            </h5>
+                        <div class="card-body" style="max-width: 900px;">
+                            {% if key2 == "videos" %}
+                                {% for list_data in val2 %}
+                                    {% for key3,val3 in list_data.items %}
+                                        <p class="card-text" style="max-width: 900px">
+                                            {% if key3 == "audioLanguage" %}
+                                                Language - {{ val3 }}<br>
                                             {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                            {% if key3 == "title" %}
-                                Title - {{ val3 }}<br>
-                            {% endif %}
-                            {% if key3 == "parentTitle" %}
-                                {% for key7,val7 in val3.items %}
-                                    {% if key7 == "title" %}
-                                        Title - {{ val7 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key7 == "titleType" %}
-                                        Title Type - {{ val7 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key7 == "year" %}
-                                        Year - {{ val7 }} &nbsp;&nbsp;&nbsp;
-                                    {% endif %}
-                                    {% if key7 == "image" %}
-                                        {% for key8,val8 in val7.items %}
-                                            {% if key8 == "url" %}
-                                               <br> Image - {{ val8 }}
+                                            {% if key3 == "contentType" %}
+                                                Type Of Content - {{ val3 }}<br>
                                             {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
+                                            {% if key3 == "type" %}
+                                                Type - {{ val3 }} <br>
+                                            {% endif %}
+                                            {% if key3 == "description" %}
+                                                <h5 style="color: green;font-weight: bold">Description</h5> {{ val3 }}<br>
+                                            {% endif %}
+                                            {% if key3 == "durationInSeconds" %}
+                                                <span class="subTitle">Duration(sec)</span> - {{ val3 }} <br>
+                                            {% endif %}
+                                            {% if key3 == "id" %}
+                                                <span class="subTitle"><a href="{% url 'user_watch_video' %}?vid={{ val3 }}">Click Here To Watch</a></span><br>
+                                            {% endif %}
+                                            {% if key3 == "image" %}
+                                                {% for key4,val4 in val3.items %}
+                                                    {% if key4 == "url" %} <br>
+                                                        Image - <img src="{{ val4 }}" height="150" width="150">
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if key3 == "primaryTitle" %}
+                                                Primary Title -<br>
+                                                    {% for key5,val5 in val3.items %}
+                                                        {% if key5 == "title" %}
+                                                            Title - {{ val5 }} &nbsp;&nbsp;&nbsp;
+                                                        {% endif %}
+                                                        {% if key5 == "titleType" %}
+                                                            Title Type - {{ val5 }} &nbsp;&nbsp;&nbsp;
+                                                        {% endif %}
+                                                        {% if key5 == "year" %}
+                                                            Year - {{ val5 }} &nbsp;&nbsp;&nbsp;
+                                                        {% endif %}
+                                                        {% if key5 == "episode" %}
+                                                            Episode - {{ val5 }}  &nbsp;&nbsp;&nbsp;
+                                                        {% endif %}
+                                                        {% if key5 == "year" %}
+                                                            Season - {{ val5 }}  &nbsp;&nbsp;&nbsp;
+                                                        {% endif %}
+                                                        {% if key5 == "image" %}
+                                                            {% for key6,val6 in val5.items %}
+                                                                {% if key6 == 'url' %}
+                                                                    <br>Image - <img src="{{ val6 }}" height="150" width="150">
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                            {% endif %}
+                                            {% if key3 == "title" %}
+                                                Title - {{ val3 }}<br>
+                                            {% endif %}
+                                            {% if key3 == "parentTitle" %}
+                                                {% for key7,val7 in val3.items %}
+                                                    {% if key7 == "title" %}
+                                                        Title - {{ val7 }} &nbsp;&nbsp;&nbsp;
+                                                    {% endif %}
+                                                    {% if key7 == "titleType" %}
+                                                        Title Type - {{ val7 }} &nbsp;&nbsp;&nbsp;
+                                                    {% endif %}
+                                                    {% if key7 == "year" %}
+                                                        Year - {{ val7 }} &nbsp;&nbsp;&nbsp;
+                                                    {% endif %}
+                                                    {% if key7 == "image" %}
+                                                        {% for key8,val8 in val7.items %}
+                                                            {% if key8 == "url" %}
+                                                                <br> Image - <img src="{{ val8 }}" height="150" width="150">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                    {% endfor %}
+                                    </p>
                                 {% endfor %}
                             {% endif %}
-                        {% endfor %}
+                        </div></div>
                     {% endfor %}
-                {% endif %}
-            {% endfor %}
+                </div>
+                </div>
         {% endif %}
     {% endfor %}
 {% endblock %}
@@ -127,47 +142,111 @@
 
 
 
+
+
+
+
+
+
+
+
+{#Backup#}
 {#{% extends 'common.html' %}#}
 {#{% block  content %}#}
 {#    {% load static %}#}
 {#    {% for key1,val1 in details.items %}#}
-{##}
-{##}
 {#        {% if key1 == "resource" %}#}
-{#            {{ key1 }} --> {{ val1 }} <br>#}
 {#            {% for key2,val2 in val1.items %}#}
-{#                {{ key2 }} -->  {{ val2 }} <br>#}
 {#                {% if key2 == 'image' %}#}
 {#                    {% for key9,val9 in val2.items %}#}
-{#                        {{ key9 }} --> {{ val9 }} <br>#}
+{#                        {% if key9 == 'url' %}#}
+{#                            <img src="{{ val9 }}" height="150" width="150"> <br>#}
+{#                        {% endif %}#}
 {#                    {% endfor %}#}
+{#                {% endif %}#}
+{#                {% if key2 == "title" %}#}
+{#                    Title - {{ val2 }}<br>#}
+{#                {% endif %}#}
+{#                {% if key2 == "titleType" %}#}
+{#                    Type - {{ val2 }}<br>#}
+{#                {% endif %}#}
+{#                {% if key2 == "year" %}#}
+{#                    Released Year - {{ val2 }}<br>#}
 {#                {% endif %}#}
 {#                {% if key2 == "videos" %}#}
 {#                    {% for list_data in val2 %}#}
-{#                        {{ list_data }} <br>#}
 {#                        {% for key3,val3 in list_data.items %}#}
-{#                            {{ key3 }} -->  {{ val3 }} <br>#}
+{#                            {% if key3 == "audioLanguage" %}#}
+{#                                Language - {{ val3 }}<br>#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "contentType" %}#}
+{#                                Type Of Content - {{ val3 }}<br>#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "type" %}#}
+{#                                Type - {{ val3 }} <br>#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "description" %}#}
+{#                                Description - {{ val3 }}<br>#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "durationInSeconds" %}#}
+{#                                Duration(sec) - {{ val3 }} <br>#}
+{#                            {% endif %}#}
+{#                            {% if key3 == "id" %}#}
+{#                                <a href="{% url 'user_watch_video' %}?vid={{ val3 }}">Click Here To Watch</a><br>#}
+{#                            {% endif %}#}
 {#                            {% if key3 == "image" %}#}
 {#                                {% for key4,val4 in val3.items %}#}
-{#                                    {{ key4 }} -->  {{ val4 }} <br>#}
+{#                                    {% if key4 == "url" %} <br>#}
+{#                                        Image - <img src="{{ val4 }}" height="150" width="150"><br>#}
+{#                                    {% endif %}#}
 {#                                {% endfor %}#}
 {#                            {% endif %}#}
 {#                            {% if key3 == "primaryTitle" %}#}
+{#                                Primary Title -:<br>#}
 {#                                {% for key5,val5 in val3.items %}#}
-{#                                    {{ key5 }} --> {{ val5 }}  <br>#}
+{#                                    {% if key5 == "title" %}#}
+{#                                        Title - {{ val5 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key5 == "titleType" %}#}
+{#                                        Title Type - {{ val5 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key5 == "year" %}#}
+{#                                        Year - {{ val5 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key5 == "episode" %}#}
+{#                                        Episode - {{ val5 }}  &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key5 == "year" %}#}
+{#                                        Season - {{ val5 }}  &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
 {#                                    {% if key5 == "image" %}#}
 {#                                        {% for key6,val6 in val5.items %}#}
-{#                                            {{ key6 }} --> {{ val6 }}  <br>#}
+{#                                            {% if key6 == 'url' %}#}
+{#                                                <br>Image - <img src="{{ val6 }}" height="150" width="150"><br>#}
+{#                                            {% endif %}#}
 {#                                        {% endfor %}#}
 {#                                    {% endif %}#}
 {#                                {% endfor %}#}
 {#                            {% endif %}#}
+{#                            {% if key3 == "title" %}#}
+{#                                Title - {{ val3 }}<br>#}
+{#                            {% endif %}#}
 {#                            {% if key3 == "parentTitle" %}#}
 {#                                {% for key7,val7 in val3.items %}#}
-{#                                    {{ key7 }} -->  {{ val7 }}  <br>#}
+{#                                    {% if key7 == "title" %}#}
+{#                                        Title - {{ val7 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key7 == "titleType" %}#}
+{#                                        Title Type - {{ val7 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
+{#                                    {% if key7 == "year" %}#}
+{#                                        Year - {{ val7 }} &nbsp;&nbsp;&nbsp;#}
+{#                                    {% endif %}#}
 {#                                    {% if key7 == "image" %}#}
 {#                                        {% for key8,val8 in val7.items %}#}
-{#                                            {{ key8 }} -->  {{ val8 }}  <br>#}
+{#                                            {% if key8 == "url" %}#}
+{#                                               <br> Image - {{ val8 }}#}
+{#                                            {% endif %}#}
 {#                                        {% endfor %}#}
 {#                                    {% endif %}#}
 {#                                {% endfor %}#}
@@ -177,14 +256,5 @@
 {#                {% endif %}#}
 {#            {% endfor %}#}
 {#        {% endif %}#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
 {#    {% endfor %}#}
 {#{% endblock %}#}
