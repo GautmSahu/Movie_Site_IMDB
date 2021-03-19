@@ -14,7 +14,7 @@ cycler==0.10.0
 dj-database-url==0.5.0
 Django==3.0.3
 django-heroku==0.3.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 fabric==2.5.0
 Flask==1.1.2
 goto-statement==1.2
